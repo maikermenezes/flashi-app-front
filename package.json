@@ -1,6 +1,6 @@
 {
-  "name": "pwa-boilerplate",
-  "description": "PWA Boilerplate",
+  "name": "flashi-pwa",
+  "description": "PWA for Flashi",
   "version": "0.3.0",
   "license": "MIT",
   "dependencies": {

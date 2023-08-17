@@ -33,12 +33,12 @@ module.exports = {
             }
         );
 
-        if (isServer && !dev) {
-            generateSitemap({
-                baseUrl,
-                skipIndex
-            }, sitemapDest);
-        }
+        // if (isServer && !dev) {
+        //     generateSitemap({
+        //         baseUrl,
+        //         skipIndex
+        //     }, sitemapDest);
+        // }
 
         if (!isServer) {
             const additionalManifestEntries = fs
