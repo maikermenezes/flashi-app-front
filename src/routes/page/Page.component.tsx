@@ -65,7 +65,7 @@ export default function Page(props: PageProps): JSX.Element {
         <section>
           <div className={ pageContent }>
             <A2HS />
-            <div className={ pageContent }>
+            {/* <div className={ pageContent }>
               { content
                 ? <Html content={ content } />
                 : (
@@ -76,9 +76,9 @@ export default function Page(props: PageProps): JSX.Element {
                   </>
                 )
               }
-            </div>
+            </div> */}
           </div>
-          <Sidebar />
+          {/* <Sidebar /> */}
         </section>
       </main>
     </>

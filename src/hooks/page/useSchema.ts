@@ -11,7 +11,6 @@ const useSchema = (): Schema => {
 
   useEffect(() => {
     if (!Object.keys(schema).length) {
-      dispatch(getSchema());
     }
   }, []);
 

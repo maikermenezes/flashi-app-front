@@ -13,7 +13,6 @@ const usePageData = (): Page => {
 
   useEffect(() => {
     if (!pageData) {
-      dispatch(getPage(pageId));
     }
   }, [pageId]);
 
