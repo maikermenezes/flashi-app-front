@@ -8,7 +8,6 @@ export default function Style(domNode: Element): JSX.Element | null {
   return (
     <Head>
       <style>
-        { children }
       </style>
     </Head>
   );

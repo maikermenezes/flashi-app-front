@@ -35,5 +35,4 @@ if (devtools) {
 
 export default createStore(
   reducers,
-  compose(...middleware)
 );
