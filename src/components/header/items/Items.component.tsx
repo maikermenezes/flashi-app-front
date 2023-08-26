@@ -11,8 +11,8 @@ const {
 
 const links = [
   { name: 'Home', url: '/', alias: [] },
-  { name: 'Pages', url: '/pages', alias: ['/[page]'] },
-  { name: 'Profile', url: '/profile', alias: [] }
+  { name: 'Decks', url: '/decks', alias: ['/[page]'] },
+  { name: 'Perfil', url: '/perfil', alias: [] }
 ];
 
 export default function Items(): JSX.Element {

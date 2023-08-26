@@ -8,6 +8,7 @@ import store from 'stores';
 import { Provider } from 'react-redux';
 import { statusBarStyle } from 'config';
 import { AppProps } from 'next/app';
+import Language from 'components/language';
 import 'styles/main.scss';
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
@@ -31,13 +32,15 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <link rel="apple-touch-icon" sizes="512x512" href="/logo512.png" />
         <link rel="apple-touch-icon" sizes="256x256" href="/logo256.png" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider store={ store }>
         <ThemeProvider>
-          <NotificationList />
+          {/* <NotificationList /> */}
           <Header />
-          <Component { ...pageProps } />
-          <Footer />
+          <Language  />
+          {/* <Component { ...pageProps } /> */}
+          {/* <Footer /> */}
         </ThemeProvider>
       </Provider>
     </>
