@@ -27,7 +27,6 @@ const Language = (props: LanguageProps): JSX.Element => {
     className: argClassName = ''
   } = props;
 
-
   const handleClick = () => {
     useGPTRequest('tear', 'english', 'portuguese').then((response) => {
       console.log("Response: ", response);
@@ -46,7 +45,7 @@ const Language = (props: LanguageProps): JSX.Element => {
                 <h2>WHAT LANGUAGE DO YOU SPEAK?</h2>
             </div>
             <div className={styles.container}>
-                <span className={styles.spanLanguage} onClick={handleClick}>PT-BR</span>
+                <span className={styles.spanLanguage}>PT-BR</span>
                 <span className={styles.spanLanguage}>EN-US</span>
                 <span className={styles.spanLanguage}>ES-ES</span>
             </div>
