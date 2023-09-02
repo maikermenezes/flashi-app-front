@@ -10,6 +10,9 @@ import { statusBarStyle } from 'config';
 import { AppProps } from 'next/app';
 import Language from 'components/language';
 import 'styles/main.scss';
+import CardGenerator from 'components/cardGenerator/CardGenerator.component';
+import Card from 'components/card/Card.component';
+
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
@@ -38,7 +41,15 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         <ThemeProvider>
           {/* <NotificationList /> */}
           <Header />
-          <Language  />
+
+          {/* Componentes prontos com ligação pendente */}
+          {/* <Language  /> */}
+          {/* <CardGenerator /> */}
+          <Card />
+
+
+
+          {/* Componentes a serem modificados */}
           {/* <Component { ...pageProps } /> */}
           {/* <Footer /> */}
         </ThemeProvider>

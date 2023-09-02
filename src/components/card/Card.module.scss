@@ -1,0 +1,41 @@
+@use 'styles/variables/placeholder' as *;
+
+.icon {
+  display: inline-block;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.loader {
+  border-radius: 50%;
+
+  @include placeholder;
+}
+
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fff;
+    width: 80%;
+    height: 400px;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 16px;
+    border: 1px solid #E5E5E5;
+}
+
+.externalContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+}
+
+.imageStyling {
+    width: 100%;
+    height: 200px;
+    border-radius: 25px;
+}
