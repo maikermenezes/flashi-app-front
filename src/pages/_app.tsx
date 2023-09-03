@@ -24,6 +24,13 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     }
   }, []);
 
+
+  const mock = {
+    imageUrl: 'https://source.unsplash.com/yWG-ndhxvqY',
+    phrase: 'She is cutting some herbs',
+    translation: 'Ela está cortando ervas',
+  };
+
   return (
     <>
       <Head>
@@ -45,12 +52,12 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           {/* Componentes prontos com ligação pendente */}
           {/* <Language  /> */}
           {/* <CardGenerator /> */}
-          <Card />
+          {/* <Card imageUrl={mock.imageUrl} phrase={mock.phrase} translation={mock.translation} /> */}
 
 
 
           {/* Componentes a serem modificados */}
-          {/* <Component { ...pageProps } /> */}
+          <Component { ...pageProps } />
           {/* <Footer /> */}
         </ThemeProvider>
       </Provider>
