@@ -10,7 +10,7 @@ type CardGeneratorProps = {
     targetLanguage?: 'SPEAKING' | 'LEARNING',
     className?: string,
     formStep?: number,
-    handleClick?: () => void,
+    handleClick: () => void,
     updateForm?: (key: string, value: string) => void,
 };
 
@@ -38,7 +38,7 @@ const CardGenerator = (props: CardGeneratorProps): JSX.Element => {
 
   const handleSubmit = () => {
     console.log("Query: ", query);
-    props.handleClick;
+    props.handleClick();
   }
   
   const className = injectClassNames( argClassName);

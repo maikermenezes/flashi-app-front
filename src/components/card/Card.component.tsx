@@ -25,6 +25,12 @@ const Card = (props: CardProps): JSX.Element => {
   } = props;
 
   const [flip, setFlip] = useState(true);
+
+  const mock = {
+    imageUrl: 'https://source.unsplash.com/yWG-ndhxvqY',
+    phrase: 'She is cutting some herbs',
+    translation: 'Ela está cortando ervas',
+  };
   
   const className = injectClassNames(argClassName);
 
@@ -33,12 +39,12 @@ const Card = (props: CardProps): JSX.Element => {
         <div className={`${styles.cardContainer} ${styles.gap}`}>
 
             <div className={styles.divCard}>
-                <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' }`} src={imageUrl} alt="imagem gerada" />
+                <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' }`} src={imageUrl || mock.imageUrl} alt="imagem gerada" />
                 <div className={`${styles.cardBack} ${!flip? styles.flipCard : '' }`}>
                     <div className={styles.cardBackPhrase}>
-                        <span>{phrase}</span>
+                        <span>{phrase || mock.phrase}</span>
                         <hr style={{'width':"80%", "height": "0.5px"}}/>
-                        <span>{translation}</span>
+                        <span>{translation || mock.translation}</span>
                     </div>
                 </div> 
             </div>
