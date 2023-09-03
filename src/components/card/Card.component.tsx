@@ -7,10 +7,12 @@ import { HiSpeakerWave } from "react-icons/hi2";
 const { loader } = styles;
 
 type CardProps = {
-    imageUrl?: String,
+    imageUrl?: string,
     phrase?: String,
     translation?: String,
     className?: string,
+    formStep?: number,
+    hadleClick?: () => void,
 };
 
 
@@ -24,18 +26,19 @@ const Card = (props: CardProps): JSX.Element => {
 
   const [flip, setFlip] = useState(true);
   
-  const className = injectClassNames( argClassName);
+  const className = injectClassNames(argClassName);
 
   return (
     <div className={styles.externalContainer}>
         <div className={`${styles.cardContainer} ${styles.gap}`}>
 
             <div className={styles.divCard}>
-                <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' }`} src="https://source.unsplash.com/yWG-ndhxvqY" alt="imagem gerada" />
+                <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' }`} src={imageUrl} alt="imagem gerada" />
                 <div className={`${styles.cardBack} ${!flip? styles.flipCard : '' }`}>
                     <div className={styles.cardBackPhrase}>
-                        <span>She is cutting some herbs</span>
-                        <span>Ela está cortando ervas</span>
+                        <span>{phrase}</span>
+                        <hr style={{'width':"80%", "height": "0.5px"}}/>
+                        <span>{translation}</span>
                     </div>
                 </div> 
             </div>
