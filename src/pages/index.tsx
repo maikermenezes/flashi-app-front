@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import Page from 'routes/page';
 import Language from 'components/language';
 import CardGenerator from 'components/cardGenerator';
 import Card from 'components/card';
-import { updateFor } from 'typescript';
 
 export default function Home(): JSX.Element {
   // return <Page isLanding />;
