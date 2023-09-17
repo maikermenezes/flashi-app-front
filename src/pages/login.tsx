@@ -92,12 +92,17 @@ const ControllerInput = ({ control, name, rules, ...props }: any) => (
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
 `;
 
 const InputContainer = styled.div`
-  width: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StyledInput = styled.input`
@@ -105,11 +110,11 @@ const StyledInput = styled.input`
   padding: 10px 15px;
   border-radius: 10px;
   margin-top: 5px;
-  width: 100%;
+  width: 70%;
 `;
 
 const ButtonContainer = styled.div`
-  width: 60%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +125,7 @@ const Button = styled.button`
   background-color: #0782f9;
   padding: 15px;
   border-radius: 10px;
-  width: 100%;
+  width: 65%;
   text-align: center;
   color: white;
   font-weight: 700;
