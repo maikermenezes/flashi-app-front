@@ -45,18 +45,19 @@ const Card = (props: CardProps): JSX.Element => {
         <div className={`${styles.cardContainer} ${styles.gap}`}>
             <h1>Deck 1</h1>
             <div className={styles.divCard}>
-                <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' }`} src={imageUrl || mock.imageUrl} alt="imagem gerada" />
+                <div className={`${styles.frontCard} ${flip? styles.flipCard : '' }`}>
+                  <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' } `} src={imageUrl || mock.imageUrl} alt="imagem gerada" />
+                  <span>{phrase || mock.phrase}</span>
+                </div>
                 <div className={`${styles.cardBack} ${!flip? styles.flipCard : '' }`}>
                     <div className={styles.cardBackPhrase}>
-                        <span>{phrase || mock.phrase}</span>
-                        <hr style={{'width':"80%", "height": "0.5px"}}/>
                         <span>{translation || mock.translation}</span>
                     </div>
                 </div> 
             </div>
 
             <span className={styles.iconSpeaker}>
-                <HiSpeakerWave size={25} />
+                <HiSpeakerWave size={20} />
             </span>
 
             <div className={styles.turnContainer}>
