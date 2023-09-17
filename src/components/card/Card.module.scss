@@ -20,12 +20,20 @@
     background-color: #fff;
     width: 80%;
     max-width: 350px;
-    height: 400px;
+    height: 450px;
     flex-direction: column;
     border-radius: 25px;
     padding: 16px;
     border: 1px solid #E5E5E5;
     color: #040404;
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+        text-align: left;
+        width: 100%;
+    }
 }
 
 .externalContainer {
@@ -50,7 +58,7 @@
 
 .iconSpeaker {
     position: absolute;
-    top: 30px;
+    top: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,28 +80,71 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        font-size: 26px;
+        font-size: 22px;
         font-weight: 700;
         cursor: pointer;
     }
 
 }
 
+.iconArrow {
+    height: 14px;
+    width: 14px;
+}
+
+.buttonBackContainer{
+    display: flex;
+    justify-content: center;
+    padding: 32px 8px 8px 8px;
+
+    button {
+        border-radius: 50px;
+        height: 35px;
+        width: 210px;
+        gap: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        background: rgb(6,6,23);
+        background: linear-gradient(270deg, rgba(1,36,149,1) 30% , rgba(6,6,23,1) 100%);    color: #fff;
+        cursor: pointer;
+        z-index: 10;
+        margin-top: 12px;
+    
+        &:focus {
+            background-color: #011e6e;
+        }
+    }
+}
+
 .buttonContainer {
-    margin-top: 32px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
 
     button{
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: #FE8054;
-        padding: 12px 18px;
+        padding: 8px 8px;
         border-radius: 25px;
-        font-size: 16px;
+        font-size: 10px;
         font-weight: 700;
-        color: #fff;
+        color: #000;
         cursor: pointer;
         border: none;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
 
     }
 }

@@ -18,7 +18,7 @@ export const useDALLERequest = async (prompt: String) => {
         headers: {
           'Content-Type': 'application/json',
           Authorization:
-            `Bearer ${API_KEY}`,
+            `Bearer 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`,
         },
       }
     )

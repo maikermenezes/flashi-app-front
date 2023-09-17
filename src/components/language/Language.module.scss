@@ -15,18 +15,24 @@
 .spanLanguage {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     background-color: #FF9772;
-    border-radius: 2px;
+    border-radius: 10px;
     margin-top: 4px;
-    font-size: 16px;
-    width: 200px;
-    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 0 0 10px;
+    gap: 6px;
+    width: 180px;
+    height: 35px;
     font-weight: 600;
     vertical-align: auto;
     cursor: pointer;
 
+    &:focus {
+        background-color: #cc5d34;
+    }
 }
 
 .container {
@@ -34,6 +40,55 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 4px;
+}
+
+.input {
+    margin-top: 4px;
+    border: 1px solid  #FF977266; 
+    border-radius: 4px;
+    display: block;
+    height: 25px;
+    width: 150px;
+    font-size: 12px;
+    text-align: left;
+    padding: 0 0 0 30px;
+}
+
+.containerSearch{
+    position: relative;
+}
+
+.iconSearch{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    height: 12px;
+    width: 12px;
+    z-index: 2;
+    color: #616161;
+    cursor: pointer;
+}
+
+.confirm {
+    border-radius: 50px;
+    height: 30px;
+    width: 90px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    font-size: 14px;
+    background-color: #012495;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 12px;
+
+    &:focus {
+        background-color: #011e6e;
+    }
 }
 
 .gap {

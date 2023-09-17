@@ -20,15 +20,23 @@ export default function Home(): JSX.Element {
   });
 
   const handleNextStep = () => {
-    console.log("FormStep: ", formStep);
     setFormStep(formStep + 1);
-    console.log("Updated FormStep: ", formStep);
   }
 
-  const updateForm = (key: string, value: string) => {
+  // const updateForm = (key: string, value: string) => {
+  //   console.log("Chave: " +key+" e novo valor: "+value);
+  //   setForm({
+  //     ...form,
+  //     [key]: value
+  //   });
+  // }
+
+
+  const updateForm = (object: any) => {
+    console.log("Values: " +object);
     setForm({
       ...form,
-      [key]: value
+      ...object
     });
   }
 
@@ -42,7 +50,7 @@ export default function Home(): JSX.Element {
               <Language targetLanguage="LEARNING" handleClick={handleNextStep} updateForm={updateForm}/>
             )}
             {formStep == 2 && (
-              <CardGenerator handleClick={handleNextStep} updateForm={updateForm}/>
+              <CardGenerator handleClick={handleNextStep} updateForm={updateForm} form={form}/>
             )}
             {formStep >= 3 && (
               <Card imageUrl={form.imageUrl} phrase={form.phrase} translation={form.translation} />
