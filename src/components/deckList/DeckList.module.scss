@@ -1,0 +1,166 @@
+@use 'styles/variables/placeholder' as *;
+
+.icon {
+  display: inline-block;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.loader {
+  border-radius: 50%;
+
+  @include placeholder;
+}
+
+.spanLanguage {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background-color: #FF9772;
+    border-radius: 10px;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 0 0 10px;
+    gap: 6px;
+    width: 180px;
+    height: 35px;
+    font-weight: 600;
+    vertical-align: auto;
+    cursor: pointer;
+
+    &:focus {
+        background-color: #cc5d34;
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input {
+    margin-top: 4px;
+    border: 1px solid  #FF977266; 
+    border-radius: 4px;
+    display: block;
+    height: 25px;
+    width: 150px;
+    font-size: 12px;
+    text-align: left;
+    padding: 0 0 0 30px;
+}
+
+.containerSearch{
+    position: relative;
+}
+
+.iconSearch{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    height: 12px;
+    width: 12px;
+    z-index: 2;
+    color: #616161;
+    cursor: pointer;
+}
+
+.confirm {
+    border-radius: 50px;
+    height: 30px;
+    width: 90px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    font-size: 14px;
+    background-color: #012495;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 12px;
+
+    &:focus {
+        background-color: #011e6e;
+    }
+}
+
+.gap {
+    gap: 16px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    button {
+        border: 2px solid  #FF9772; 
+        background-color: #fff;
+        color: #FF9772;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+    }
+}
+
+.containerDeckButtons{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+
+    button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 8px;
+        font-size: 20px;
+        background: rgb(255,147,77);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        background: linear-gradient(90deg, rgba(255,147,77,1) 10%, rgba(255,220,89,1) 100%);
+    }
+}
+
+
+.externalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+
+    h1 {
+        margin: 0;
+        font-weight: 800 ;
+    }
+}
+
+.container.gap {
+    gap: 30px;
+    width: 100%;
+}
+
+
+
+

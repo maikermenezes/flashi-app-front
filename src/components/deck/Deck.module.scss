@@ -1,0 +1,195 @@
+@use 'styles/variables/placeholder' as *;
+
+.icon {
+  display: inline-block;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.loader {
+  border-radius: 50%;
+
+  @include placeholder;
+}
+
+.spanLanguage {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    background-color: #FF9772;
+    border-radius: 10px;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #fff;
+    padding: 0 0 0 10px;
+    gap: 6px;
+    width: 180px;
+    height: 35px;
+    font-weight: 600;
+    vertical-align: auto;
+    cursor: pointer;
+
+    &:focus {
+        background-color: #cc5d34;
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input {
+    margin-top: 4px;
+    border: 1px solid  #FF977266; 
+    border-radius: 4px;
+    display: block;
+    height: 25px;
+    width: 150px;
+    font-size: 12px;
+    text-align: left;
+    padding: 0 0 0 30px;
+}
+
+.containerSearch{
+    position: relative;
+}
+
+.iconSearch{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    height: 12px;
+    width: 12px;
+    z-index: 2;
+    color: #616161;
+    cursor: pointer;
+}
+
+.confirm {
+    border-radius: 50px;
+    height: 30px;
+    width: 90px;
+    gap: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    font-size: 14px;
+    background-color: #012495;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 12px;
+
+    &:focus {
+        background-color: #011e6e;
+    }
+}
+
+.gap {
+    gap: 16px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    button {
+        border-radius: 50px;
+        height: 40px;
+        width: 120px;
+        gap: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        font-size: 18px;
+        background: rgb(6,6,23);
+        background: linear-gradient(270deg, rgba(1,36,149,1) 30% , rgba(6,6,23,1) 100%);    color: #fff;
+        cursor: pointer;
+        z-index: 10;
+        margin-top: 12px;
+
+        &:focus {
+            background-color: #011e6e;
+        }
+
+    }
+}
+
+.containerMiniCards{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+    
+
+
+.externalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+
+    h1 {
+        margin: 0;
+        font-weight: 800 ;
+    }
+}
+
+.container.gap {
+    gap: 30px;
+    width: 100%;
+}
+
+
+// MiniCard
+
+.miniCardContainer {
+    background-color: #1C79ED;
+    width: 120px;
+    height: 95px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 4px;
+
+    img {
+        width: 85px;
+        height: 55px;
+    }
+
+    span {
+        font-size: 8px;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        margin-top: 4px;
+    }
+}
+
+.iconSpeaker {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    color: #fff;
+}
+
+
