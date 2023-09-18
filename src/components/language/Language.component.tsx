@@ -15,7 +15,7 @@ type LanguageProps = {
     formStep?: number,
     appLanguage?: string,
     handleClick: () => void,
-    updateForm: (key: string, value: string) => void,
+    updateForm: (object: Object) => void,
 };
 
 const Loader = ({ className = '' }: LanguageProps): JSX.Element => (
@@ -68,13 +68,11 @@ const Language = (props: LanguageProps): JSX.Element => {
 
   const handleLanguageChange = async() => {
 
-    console.log('Language:  ', language);
-
     if(type){
-      props.updateForm('language', language);
+      props.updateForm({'language': language});
       console.log('Language:  ', language);
     }else{
-      props.updateForm('targetLanguage', language);
+      props.updateForm({'targetLanguage': language});
       console.log('Target Language:  ', language);
     }
 

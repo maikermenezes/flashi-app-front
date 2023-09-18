@@ -33,11 +33,13 @@ export default function Home(): JSX.Element {
 
 
   const updateForm = (object: any) => {
-    console.log("Values: " +object);
+    
     setForm({
       ...form,
       ...object
     });
+
+    console.log('Updated form: ' + form);
   }
 
 
@@ -53,7 +55,7 @@ export default function Home(): JSX.Element {
               <CardGenerator handleClick={handleNextStep} updateForm={updateForm} form={form}/>
             )}
             {formStep >= 3 && (
-              <Card imageUrl={form.imageUrl} phrase={form.phrase} translation={form.translation} />
+              <Card imageUrl={form.imageUrl} deck={[]} phrase={form.phrase} translation={form.translation} />
             )}
 
     </>

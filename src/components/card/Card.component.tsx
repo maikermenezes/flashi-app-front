@@ -130,14 +130,14 @@ const Card = (props: CardProps): JSX.Element => {
             <p className={styles.cardCount}>{`Card ${currentIndex+1}/${mockDeck.length}`} </p>
             <div className={styles.divCard}>
                 <div className={`${styles.frontCard} ${flip? styles.flipCard : '' }`}>
-                  <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' } `} src={deck[currentIndex].imageUrl || mock.imageUrl} alt="imagem gerada" />
+                  <img className={`${styles.imageStyling} ${flip? styles.flipCard : '' } `} src={imageUrl || deck[currentIndex].imageUrl || mock.imageUrl} alt="imagem gerada" />
                   {/* <span>{phrase || mock.phrase}</span> */}
-                  <span>{deck[currentIndex].phrase || mock.phrase}</span>
+                  <span>{phrase || deck[currentIndex].phrase || mock.phrase}</span>
                 </div>
                 <div className={`${styles.cardBack} ${!flip? styles.flipCard : '' }`}>
                     <div className={styles.cardBackPhrase}>
                         {/* <span>{translation || mock.translation}</span> */}
-                        <span>{deck[currentIndex].translation || mock.translation}</span>
+                        <span>{translation || deck[currentIndex].translation || mock.translation}</span>
                     </div>
                 </div> 
             </div>
