@@ -1,3 +1,4 @@
+
 import React, { createElement, useState } from 'react';
 import { injectClassNames } from 'utils/css';
 import styles from './CardGenerator.module.scss';
@@ -133,7 +134,7 @@ const gptRequest = async (word: string, targetLanguage: string, languageToTransl
       headers: {
         'Content-Type': 'application/json',
         Authorization:
-        `Bearer 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`,
+        ``,
       },
     }
   )
