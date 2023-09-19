@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import { statusBarStyle } from "config";
 import { AppProps } from "next/app";
 import "styles/main.scss";
-import RegistrationScreen from "./registration";
 import { AuthProvider } from "contexts/AuthContext";
+import RegistrationScreen from "routes/registration";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
