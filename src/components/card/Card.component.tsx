@@ -6,6 +6,9 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
 import { useRouter } from 'next/router';
 import Deck from 'components/deck/Deck.component';
+import { useTextToSpeech } from 'hooks/api';
+import { idiomas } from 'utils/constants';
+
 
 const { loader } = styles;
 
@@ -17,12 +20,13 @@ type CardType = {
 
 type CardProps = {
     imageUrl?: string,
-    phrase?: String,
+    phrase?: string,
     translation?: String,
     className?: string,
     formStep?: number,
     deck: Array<CardType>,
     deckName?: string,
+    speechLanguage: string,
     hadleClick?: () => void,
 };
 
@@ -34,7 +38,8 @@ const Card = (props: CardProps): JSX.Element => {
     phrase,
     translation,
     deckName,
-    deck
+    deck,
+    speechLanguage,
   } = props;
 
   const [flip, setFlip] = useState(true);
@@ -123,6 +128,19 @@ const Card = (props: CardProps): JSX.Element => {
   
   const className = injectClassNames(argClassName);
 
+
+  const handleSpeech = () => {
+
+    const msg = new SpeechSynthesisUtterance();
+    msg.lang = idiomas[speechLanguage].key || 'en-US';
+    msg.text = phrase || mock.phrase;
+    window.speechSynthesis.speak(msg);
+  }
+
+  // const handleSpeech = () => {
+  //   useTextToSpeech("test phrase", "en-US", "en-US-Wavenet-C")
+  // }
+
   return (
     <div className={styles.externalContainer}>
         <div className={`${styles.cardContainer} ${styles.gap}`}>
@@ -142,9 +160,9 @@ const Card = (props: CardProps): JSX.Element => {
                 </div> 
             </div>
 
-            <span className={styles.iconSpeaker}>
+            <button className={styles.iconSpeaker} onClick={handleSpeech}>
                 <HiSpeakerWave size={20} />
-            </span>
+            </button>
 
             <div className={styles.turnContainer}>
                 <span onClick={() => setFlip(!flip)}>
@@ -166,7 +184,6 @@ const Card = (props: CardProps): JSX.Element => {
                 Voltar para Meus Decks
               </button>
              </div>
-
         </div>
     </div>
 

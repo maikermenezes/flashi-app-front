@@ -7,6 +7,7 @@ import { injectClassNames } from 'utils/css';
 import styles from './Page.module.scss';
 import DeckList from 'components/deckList/DeckList.component';
 import Deck from 'components/deck/Deck.component';
+import Export from 'components/export/Export.component';
 
 const {
   page,
@@ -66,7 +67,8 @@ export default function Page(props: PageProps): JSX.Element {
           <div className={ pageContent }>
             {/* <A2HS /> */}
             {/* <DeckList /> */}
-            <Deck />
+            {/* <Deck /> */}
+            <Export />
           </div>
           {/* <Sidebar /> */}
         </section>

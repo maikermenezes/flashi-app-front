@@ -4,7 +4,9 @@
   "version": "0.3.0",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^5.0.1",
     "@svgr/webpack": "6.2.1",
+    "google-cloud-text-to-speech": "^0.3.2",
     "html-react-parser": "^3.0.1",
     "jstoxml": "^2.2.7",
     "next": "^11.0.0",

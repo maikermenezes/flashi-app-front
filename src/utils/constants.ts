@@ -1,11 +1,121 @@
+type LanguageSet = {
+    key: string;
+    voice: string;
+};
+
 type Idiomas = {
-    [key: string]: string;
+    [key: string]: LanguageSet;
 };
 
 export const idiomas: Idiomas = {
-    'inglês': 'en-US-Neural2-H',
-    'português': 'pt-BR-Neural2-C',
-    'espanhol': 'es-ES-Neural2-A',
+    english: {
+        key: 'en-US',
+        voice:'en-US-Neural2-H',
+    },
+    portuguese: {
+        key: 'pt-BR',
+        voice:'pt-BR-Neural2-C',
+    },
+    spanish: {
+        key: 'es-ES',
+        voice:'es-ES-Neural2-A',
+    },
+    french: {
+        key: 'fr-FR',
+        voice:'fr-FR-Standard-A',
+    },
+    german: {
+        key: 'de-DE',
+        voice:'de-DE-Standard-A',
+    },
+    italian: {
+        key: 'it-IT',
+        voice:'it-IT-Standard-A',
+    },
+    japanese: {
+        key: 'ja-JP',
+        voice:'ja-JP-Standard-A',
+    },
+    korean: {
+        key: 'ko-KR',
+        voice:'ko-KR-Standard-A',
+    },
+    chinese: {
+        key: 'cmn-CN',
+        voice:'cmn-CN-Standard-A',
+    },
+    arabic: {
+        key: 'ar-XA',
+        voice:'ar-XA-Standard-A',
+    },
+    hindi: {
+        key: 'hi-IN',
+        voice:'hi-IN-Standard-A',
+    },
+    indonesian: {
+        key: 'id-ID',
+        voice:'id-ID-Standard-A',
+    },
+    turkish: {
+        key: 'tr-TR',
+        voice:'tr-TR-Standard-A',
+    },
+    vietnamese: {
+        key: 'vi-VN',
+        voice:'vi-VN-Standard-A',
+    },
+    russian: {
+        key: 'ru-RU',
+        voice:'ru-RU-Standard-A',
+    },
+    polish: {
+        key: 'pl-PL',
+        voice:'pl-PL-Standard-A',
+    },
+    dutch: {
+        key: 'nl-NL',
+        voice:'nl-NL-Standard-A',
+    },
+    swedish: {
+        key: 'sv-SE',
+        voice:'sv-SE-Standard-A',
+    },
+    norwegian: {
+        key: 'nb-NO',
+        voice:'nb-NO-Standard-A',
+    },
+    danish: {
+        key: 'da-DK',
+        voice:'da-DK-Standard-A',
+    },
+    finnish: {
+        key: 'fi-FI',
+        voice:'fi-FI-Standard-A',
+    },
+    czech: {
+        key: 'cs-CZ',
+        voice:'cs-CZ-Standard-A',
+    },
+    hungarian: {
+        key: 'hu-HU',
+        voice:'hu-HU-Standard-A',
+    },
+    romanian: {
+        key: 'ro-RO',
+        voice:'ro-RO-Standard-A',
+    },
+    catalan: {
+        key: 'ca-ES',
+        voice:'ca-ES-Standard-A',
+    },
+    greek : {
+        key: 'el-GR',
+        voice:'el-GR-Standard-A',
+    },
+    hebrew: {
+        key: 'he-IL',
+        voice:'he-IL-Standard-A',
+    },
 };
 
 
@@ -22,3 +132,60 @@ export const credenciais = {
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/teste-1%40buoyant-site-394900.iam.gserviceaccount.com",
     "universe_domain": "googleapis.com"
   }
+
+//   1. Afrikaans (África do Sul): ‘af-ZA-Standard-A’
+// 2. Árabe: ‘ar-XA-Wavenet-D’
+// 3. Basco (Espanha): ‘eu-ES-Standard-A’
+// 4. Bengali (Índia): ‘bn-IN-Wavenet-A’
+// 5. Búlgaro (Bulgária): ‘bg-BG-Standard-A’
+// 6. Catalão (Espanha): ‘ca-ES-Standard-A’
+// 7. Chinês (Hong Kong): ‘yue-HK-Standard-A’
+// 8. Tcheco (República Tcheca): ‘cs-CZ-Wavenet-A’
+// 9. Dinamarquês (Dinamarca): ‘da-DK-Neural2-D’
+// 10. Holandês (Bélgica): ‘nl-BE-Wavenet-A’
+// 11. Holandês (Países Baixos): ‘nl-NL-Wavenet-D’
+// 12. Inglês (Austrália): ‘en-AU-Neural2-C’
+// 13. Inglês (Índia): ‘en-AU-Wavenet-C’
+// 14. Inglês (Reino Unido): ‘en-GB-Neural2-C’
+// 15. Inglês (EUA): ‘en-US-Neural2-H’
+// 16. Filipino (Filipinas): ‘fil-ph-Neural2-A’
+// 17. Finlandês (Finlândia): ‘fi-FI-Wavenet-A’
+// 18. Francês (Canadá): ‘fr-CA-Neural2-A’
+// 19. **Francês (França):** ‘’
+// 20. Galego (Espanha): ‘gl-ES-Standard-A’
+// 21. Alemão (Alemanha): ‘de-DE-Neural2-C’
+// 22. Grego (Grécia): ‘el-GR-Wavenet-A’
+// 23. Gujarati (Índia): ‘gu-IN-Wavenet-A’
+// 24. Hebraico (Israel): ‘he-IL-Wavenet-A’
+// 25. Hindi (Índia): ‘hi-IN-Neural2-D’
+// 26. Húngaro (Hungria): ‘hu-HU-Wavenet-A’
+// 27. Islandês (Islândia): ‘is-IS-Standard-A’
+// 28. Indonésio (Indonésia): ‘id-ID-Wavenet-A’
+// 29. Italiano (Itália): ‘it-IT-Neural2-A’
+// 30. Japonês (Japão): ‘ja-JP-Neural2-B’
+// 31. Kannada (Índia): ‘kn-IN-Wavenet-A’
+// 32. Coreano (Coreia do Sul): ‘ko-KR-Neural2-A’
+// 33. Letão (Letônia): ‘lv-LV-Standard-A’
+// 34. Lituano (Lituânia): ‘t-LT-Standard-A’
+// 35. Malaio (Malásia): ‘ms-MY-Wavenet-C’
+// 36. Malaiala (Índia): ‘ml-IN-Wavenet-C’
+// 37. Mandarim Chinês: ‘cmn-CN-Wavenet-D’
+// 38. Marathi (Índia): ‘mr-IN-Wavenet-C’
+// 39. Norueguês (Noruega): ‘nb-NO-Wavenet-E’
+// 40. Polonês (Polônia): ‘pl-PL-Wavenet-E’
+// 41. Português (Brasil): ‘pt-BR-Neural2-C’
+// 42. Português (Portugal): ‘pt-PT-Wavenet-D’
+// 43. Punjabi (Índia): ‘pa-IN-Wavenet-C’
+// 44. Romeno (Romênia): ‘ro-RO-Wavenet-A’
+// 45. Russo (Rússia): ‘ru-RU-Wavenet-A’
+// 46. Sérvio (Cirílico): ‘sr-RS-Standard-A’
+// 47. Eslovaco (Eslováquia): ‘sk-SK-Wavenet-A’
+// 48. Espanhol (Espanha): ‘es-ES-Neural2-A’
+// 49. Espanhol (EUA): ‘es-US-Neural2-A’
+// 50. Sueco (Suécia): ‘sv-SE-Wavenet-D’
+// 51. Tâmil (Índia): ‘ta-IN-Wavenet-C’
+// 52. Telugu (Índia): ‘te-IN-Standard-A’
+// 53. Tailandês (Tailândia): ‘th-TH-Neural2-C’
+// 54. Turco (Turquia): ‘tr-TR-Wavenet-A’
+// 55. Ucraniano (Ucrânia): ‘uk-UA-Wavenet-A’
+// 56. Vietnamita (Vietnã): ‘vi-VN-Neural2-A’

@@ -96,6 +96,8 @@ const fixDallePrompt = ( responseGPT:string ) => {
   objectValues.phrase = phraseObjectArray[0].sentence
   objectValues.translation = phraseObjectArray[0].translation
 
+  updateForm(objectValues);
+
   console.log("phraseObjectArray[0]: ", phraseObjectArray[0]);
 
   dalleRequest(phraseObjectArray[0].sentence)
@@ -106,13 +108,10 @@ const fixDallePrompt = ( responseGPT:string ) => {
 
 const gptRequest = async (word: string, targetLanguage: string, languageToTranslate: string) => {
 
-  // const prompt = 'Generate sentences for each meaning of the word '+word+ ' in ' +targetLanguage+' followed by the translation to '+languageToTranslate+'. Return as a list of objects containing a sentence paired with its translation. Omit the meaning. Use the following structure as an example' + example;
-
   const prompt = `Generate sentences for each meaning of the word ${word} in ${targetLanguage} followed by the translation to ${languageToTranslate}. Return as a list of objects containing a sentence paired with its translation. Omit the meaning. Use the following structure as an example: [
     {"sentence": "I need to deposit some money in the bank.", "translation": "Preciso depositar dinheiro no banco."},
     {"sentence": "She works at a bank as a teller.", "translation": "Ela trabalha em um banco como caixa."},
   ] `;
-
 
   setLoading(true);
 
@@ -152,6 +151,8 @@ const gptRequest = async (word: string, targetLanguage: string, languageToTransl
 
     setLoading(true);
 
+    console.log("form: ", JSON.stringify(form));
+
     gptRequest(query, form.targetLanguage, form.language);
 
   }
@@ -167,6 +168,7 @@ const gptRequest = async (word: string, targetLanguage: string, languageToTransl
           <div className={styles.loadingImage}></div>
           <span className={styles.loadingTurn}></span>
           <span className={styles.loadingButton}></span>
+          <img src='/walking.gif' className={styles.imageAnimation} />
         </div>
       } 
         { !loading && <div className={`${styles.wrapContainer} ${styles.gap}`}>

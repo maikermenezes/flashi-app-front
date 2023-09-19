@@ -5,6 +5,7 @@ import Flag from 'react-flagkit';
 import { GoCheckCircle } from 'react-icons/go';
 import { BsSearch } from 'react-icons/bs';
 
+
 import { useGPTRequest } from 'hooks/api';
 
 const { loader } = styles;
@@ -109,6 +110,7 @@ const Language = (props: LanguageProps): JSX.Element => {
             <div>
               <button className={styles.confirm} onClick={handleLanguageChange}><GoCheckCircle size='16px'/>{text.buttonLabel}</button>
             </div>
+
         </div>
     </div>
 

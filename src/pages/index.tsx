@@ -4,6 +4,8 @@ import Language from 'components/language';
 import CardGenerator from 'components/cardGenerator';
 import Card from 'components/card';
 import { updateFor } from 'typescript';
+import Welcome from 'components/welcome/Welcome.component';
+import { idiomas } from 'utils/constants';
 
 export default function Home(): JSX.Element {
   // return <Page isLanding />;
@@ -11,12 +13,14 @@ export default function Home(): JSX.Element {
 
 
   const [formStep, setFormStep] = useState(0);
+  const [langKey, setLangKey] = useState('english');
   const [form, setForm] = useState({
     language: '',
     targetLanguage: '',
     imageUrl: '',
     phrase: '',
     translation: '',
+    langKey: '',
   });
 
   const handleNextStep = () => {
@@ -38,8 +42,7 @@ export default function Home(): JSX.Element {
       ...form,
       ...object
     });
-
-    console.log('Updated form: ' + form);
+    console.log('Updated form: ' + JSON.stringify(form));
   }
 
 
@@ -47,6 +50,7 @@ export default function Home(): JSX.Element {
     <>
             {formStep == 0 && (
               <Language targetLanguage="SPEAKING" handleClick={handleNextStep} updateForm={updateForm}/>
+              // <Welcome />
             )}
             {formStep == 1 && (
               <Language targetLanguage="LEARNING" handleClick={handleNextStep} updateForm={updateForm}/>
@@ -55,7 +59,7 @@ export default function Home(): JSX.Element {
               <CardGenerator handleClick={handleNextStep} updateForm={updateForm} form={form}/>
             )}
             {formStep >= 3 && (
-              <Card imageUrl={form.imageUrl} deck={[]} phrase={form.phrase} translation={form.translation} />
+              <Card imageUrl={form.imageUrl} deck={[]} phrase={form.phrase} speechLanguage={form.targetLanguage} translation={form.translation} />
             )}
 
     </>
