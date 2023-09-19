@@ -1,6 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useContext } from "react";
+import { AuthContext } from "contexts/AuthContext";
 
 const LoginScreen = () => {
   const {
@@ -17,17 +19,15 @@ const LoginScreen = () => {
 
   const router = useRouter();
 
-  // const handleLogin = async (data) => {
-  //   signInWithEmailAndPassword(auth, data.email, data.password)
-  //     .then((userCredential) => {
-  //       const user = userCredential.user;
-  //       console.log('Logged in with:', user.email);
-  //       router.push('/home');
-  //     })
-  //     .catch((error) => {
-  //       alert(error.message);
-  //     });
-  // };
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = async (data: any) => {
+    try {
+      await signIn(data);
+    } catch (error) {
+      alert(`The following error ocurred: ${error}`);
+    }
+  };
 
   return (
     <Container>
@@ -49,13 +49,7 @@ const LoginScreen = () => {
         {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
       </InputContainer>
       <ButtonContainer>
-        <Button
-          onClick={handleSubmit(() => {
-            /* handle login*/
-          })}
-        >
-          Login
-        </Button>
+        <Button onClick={handleSubmit(handleLogin)}>Login</Button>
       </ButtonContainer>
     </Container>
   );

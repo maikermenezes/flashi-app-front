@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
-import axios from "axios";
+import { api } from "services/api";
 
 type User = {
   id: string;
@@ -38,18 +38,21 @@ export function AuthProvider({ children }: any) {
     const { "flashi.token": token } = parseCookies();
 
     if (token) {
-      // TODO: chamar o endpoint recoverUserInfo (com GET)
-      // TODO: para tal, só precisa passar o token no header "authorization"
-      // .then(response => {
-      //   setUser(response.data.user)
-      // })
+      api
+        .get("/auth", { headers: { authorization: `Bearer ${token}` } })
+        .then((response) => {
+          setUser(response.data.user);
+        });
     }
   }, []);
 
   async function signIn({ email, password }: SignInData) {
-    // TODO: chamar o endpoint login (com POST)
-    // TODO: para tal, só precisa passar o email e o password no body
-    // const { token, user } = await <função de login>
+    const loginResponse = await api.post("/auth", {
+      email: email,
+      password: password,
+    });
+
+    const { token, user } = loginResponse.data;
 
     setCookie(undefined, "flashi.token", token, {
       maxAge: 60 * 60 * 1, // 1 hour
@@ -63,12 +66,19 @@ export function AuthProvider({ children }: any) {
     Router.push("/dashboard");
   }
 
-  async function signUp({ email, password }: SignUpData) {
-    // TODO: chamar o endpoint de users (POST)
+  async function signUp({ name, email, password }: SignUpData) {
+    await api.post("/user", {
+      name: name,
+      email: email,
+      password: password,
+    });
 
-    // TODO: chamar o endpoint login (com POST)
-    // TODO: para tal, só precisa passar o email e o password no body
-    // const { token, user } = await <função de login>
+    const loginResponse = await api.post("/auth", {
+      email: email,
+      password: password,
+    });
+
+    const { token, user } = loginResponse.data;
 
     setCookie(undefined, "flashi.token", token, {
       maxAge: 60 * 60 * 1, // 1 hour

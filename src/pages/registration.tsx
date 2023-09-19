@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 // import { auth, db } from '../../firebase';
 // import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 // import PopupComponent from '../components/PopUpComponent';
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { AuthContext } from "contexts/AuthContext";
 
 // ! set userouter route for loginscreen
 
@@ -23,37 +24,21 @@ const RegistrationScreen = () => {
     mode: "onChange",
   });
 
-  // const [isPopupVisible, setIsPopupVisible] = useState(false);
-
   const router = useRouter();
 
-  // const handleSignUp = async (data) => {
-  //   try {
-  //     const userCredential = await createUserWithEmailAndPassword(
-  //       auth,
-  //       data.email,
-  //       data.password
-  //     );
-  //     const user = userCredential.user;
+  const { signUp } = useContext(AuthContext);
 
-  //     await setDoc(doc(db, "users", user.uid), { name: data.name });
-  //     setIsPopupVisible(true);
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
+  const handleSignUp = async (data: any) => {
+    try {
+      await signUp(data);
+    } catch (error) {
+      alert(`The following error ocurred: ${error}`);
+    }
+  };
 
   return (
     <Container>
-      {/* {isPopupVisible && (
-        <PopupComponent onClose={() => setIsPopupVisible(false)} />
-      )} */}
-
-      <Form
-        onSubmit={handleSubmit(() => {
-          /*handleSignUp */
-        })}
-      >
+      <Form onSubmit={handleSubmit(handleSignUp)}>
         <Controller
           control={control}
           rules={{ required: "Campo obrigatório" }}
