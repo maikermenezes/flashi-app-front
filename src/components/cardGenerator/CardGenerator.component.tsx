@@ -70,7 +70,7 @@ const CardGenerator = (props: CardGeneratorProps): JSX.Element => {
         headers: {
           'Content-Type': 'application/json',
           Authorization:
-            ``,
+            `${form.apiKey}`,
         },
       }
     )
@@ -133,7 +133,7 @@ const gptRequest = async (word: string, targetLanguage: string, languageToTransl
       headers: {
         'Content-Type': 'application/json',
         Authorization:
-        ``,
+        `${form.apiKey}`,
       },
     }
   )

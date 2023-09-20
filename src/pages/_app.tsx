@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     translation: "Ela está cortando ervas",
   };
 
-  const isSignedIn = false;
+  const isSignedIn = true;
 
   return (
     <>
