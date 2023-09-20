@@ -1,13 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import Landing from "routes/page/landing";
-import A2HS from "components/a2hs";
 import { usePageData, usePageDetails } from "hooks/page";
 import { injectClassNames } from "utils/css";
 import styles from "./Page.module.scss";
 import DeckList from "components/deckList/DeckList.component";
-import Deck from "components/deck/Deck.component";
-import Export from "components/export/Export.component";
 
 const { page, pageLanding, pageContent, placeholder } = styles;
 

@@ -32,19 +32,21 @@ const DeckList = (props: DeckListProps): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  if (user) {
-    api
-      .get(`/user/decks/${user.id}`)
-      .then((response) => {
-        setDecks(response.data);
-        console.log("decks: ", decks);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError("Failed to fetch decks");
-        setLoading(false);
-      });
-  }
+  useEffect(() => {
+    if (user) {
+      api
+        .get(`/user/decks/${user.id}`)
+        .then((response) => {
+          setDecks(response.data);
+          console.log("decks: ", response.data); // Updated this line to log the response data
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError("Failed to fetch decks");
+          setLoading(false);
+        });
+    }
+  }, []); // Add user to the dependency array
 
   return (
     <div className={styles.externalContainer}>
