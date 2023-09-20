@@ -105,7 +105,6 @@ const fixDallePrompt = ( responseGPT:string ) => {
 }
 
 
-
 const gptRequest = async (word: string, targetLanguage: string, languageToTranslate: string) => {
 
   const prompt = `Generate sentences for each meaning of the word ${word} in ${targetLanguage} followed by the translation to ${languageToTranslate}. Return as a list of objects containing a sentence paired with its translation. Omit the meaning. Use the following structure as an example: [
