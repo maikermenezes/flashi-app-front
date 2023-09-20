@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { setCookie, parseCookies } from "nookies";
+import { setCookie, parseCookies, destroyCookie } from "nookies";
 import Router from "next/router";
 import { api } from "services/api";
 
@@ -25,6 +25,7 @@ type AuthContextType = {
   user: User | null;
   signIn: (data: SignInData) => Promise<void>;
   signUp: (data: SignUpData) => Promise<void>;
+  signOut: () => Promise<void>;
 };
 
 export const AuthContext = createContext({} as AuthContextType);
@@ -43,6 +44,8 @@ export function AuthProvider({ children }: any) {
         .then((response) => {
           setUser(response.data.user);
         });
+    } else {
+      setUser(null);
     }
   }, []);
 
@@ -62,8 +65,6 @@ export function AuthProvider({ children }: any) {
     // api.defaults.headers['authorization'] = `Bearer ${token}`;
 
     setUser(user);
-
-    Router.push("/dashboard");
   }
 
   async function signUp({ name, email, password }: SignUpData) {
@@ -88,12 +89,18 @@ export function AuthProvider({ children }: any) {
     // api.defaults.headers['authorization'] = `Bearer ${token}`;
 
     setUser(user);
+  }
 
-    Router.push("/dashboard");
+  async function signOut() {
+    destroyCookie(undefined, "flashi.token");
+
+    setUser(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signUp }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, signIn, signUp, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );
