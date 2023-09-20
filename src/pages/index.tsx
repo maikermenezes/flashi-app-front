@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Page from 'routes/page';
 import Language from 'components/language';
 import CardGenerator from 'components/cardGenerator';
 import Card from 'components/card';
 import KeyInput from 'components/keyInput';
-import { updateFor } from 'typescript';
 import Welcome from 'components/welcome/Welcome.component';
 import { idiomas } from 'utils/constants';
 
