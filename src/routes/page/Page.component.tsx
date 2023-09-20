@@ -65,12 +65,10 @@ export default function Page(props: PageProps): JSX.Element {
         { isLanding && <Landing /> }
         <section>
           <div className={ pageContent }>
-            {/* <A2HS /> */}
-            {/* <DeckList /> */}
+            <DeckList />
             {/* <Deck /> */}
-            <Export />
+            {/* <Export /> */}
           </div>
-          {/* <Sidebar /> */}
         </section>
       </main>
     </>
