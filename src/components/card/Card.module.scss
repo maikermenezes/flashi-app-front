@@ -20,12 +20,20 @@
     background-color: #fff;
     width: 80%;
     max-width: 350px;
-    height: 400px;
+    height: 450px;
     flex-direction: column;
     border-radius: 25px;
     padding: 16px;
     border: 1px solid #E5E5E5;
     color: #040404;
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+        text-align: left;
+        width: 100%;
+    }
 }
 
 .externalContainer {
@@ -37,20 +45,10 @@
     height: 100%;
 }
 
-.imageStyling {
-    width: 100%;
-    height: 200px;
-    position: absolute;
-    border-radius: 25px;
-    border: 1px solid #E5E5E5;
-    z-index: 1;
-    transform: rotateY(180deg);
-    width: 0;
-}
 
 .iconSpeaker {
     position: absolute;
-    top: 30px;
+    top: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +61,11 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
+.cardCount{
+    position: absolute;
+    right: 30px;
+}
+
 .turnContainer{
 
     padding: 24px;
@@ -72,28 +75,71 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        font-size: 26px;
+        font-size: 22px;
         font-weight: 700;
         cursor: pointer;
     }
 
 }
 
+.iconArrow {
+    height: 14px;
+    width: 14px;
+}
+
+.buttonBackContainer{
+    display: flex;
+    justify-content: center;
+    padding: 32px 8px 8px 8px;
+
+    button {
+        border-radius: 50px;
+        height: 35px;
+        width: 210px;
+        gap: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        background: rgb(6,6,23);
+        background: linear-gradient(270deg, rgba(1,36,149,1) 30% , rgba(6,6,23,1) 100%);    color: #fff;
+        cursor: pointer;
+        z-index: 10;
+        margin-top: 12px;
+    
+        &:focus {
+            background-color: #011e6e;
+        }
+    }
+}
+
 .buttonContainer {
-    margin-top: 32px;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
 
     button{
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: #FE8054;
-        padding: 12px 18px;
+        padding: 8px 8px;
         border-radius: 25px;
-        font-size: 16px;
+        font-size: 10px;
         font-weight: 700;
-        color: #fff;
+        color: #000;
         cursor: pointer;
         border: none;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
 
     }
 }
@@ -132,12 +178,14 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        font-weight: 400;
+        font-weight: 600;
         margin: 10px;
+        color: #fff;
         width: 70%;
     }
 
 }
+
 .divCard {
     position: relative;
     width: 100%;
@@ -148,11 +196,55 @@
 
 }
 
+.imageStyling {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    border-radius: 8px;
+    z-index: 1;
+    transform: rotateY(180deg);
+    width: 0;
+    left: 15%;
+    top: 15px;
+}
+
 .imageStyling.flipCard {
+    transform: rotateY(0deg);
+    z-index: 10;
+    width: 70%;
+    transition: all 0.5s ease-in-out;
+}
+
+.frontCard {
+    transform: rotateY(180deg);
+    width: 0;
+    background-color: #3c88e4;
+    border-radius: 16px;
+
+    span {
+        color: #fff;
+        position: absolute;
+        top: 150px;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        opacity: 0;
+    }
+}
+
+.frontCard.flipCard{
     transform: rotateY(0deg);
     z-index: 10;
     width: 100%;
     transition: all 0.5s ease-in-out;
+    height: 200px;
+
+    span {
+        transition-delay: 0.5s;
+        opacity: 1;
+    }
+
 }
 
 .cardBack.flipCard {
@@ -162,6 +254,8 @@
     z-index: 10;
     width: 100%;
     transition: all 0.5s ease-in-out;
+    background-color: #3c88e4;
+    color: #fff;
 
     .cardBackPhrase {
         transition-delay: 0.5s;
@@ -169,6 +263,3 @@
     }
 
 }
-
-
-

@@ -2,11 +2,12 @@ import React from 'react';
 import Head from 'next/head';
 import Landing from 'routes/page/landing';
 import A2HS from 'components/a2hs';
-import Sidebar from 'components/sidebar';
-import Html from 'components/html';
 import { usePageData, usePageDetails } from 'hooks/page';
 import { injectClassNames } from 'utils/css';
 import styles from './Page.module.scss';
+import DeckList from 'components/deckList/DeckList.component';
+import Deck from 'components/deck/Deck.component';
+import Export from 'components/export/Export.component';
 
 const {
   page,
@@ -64,21 +65,10 @@ export default function Page(props: PageProps): JSX.Element {
         { isLanding && <Landing /> }
         <section>
           <div className={ pageContent }>
-            <A2HS />
-            {/* <div className={ pageContent }>
-              { content
-                ? <Html content={ content } />
-                : (
-                  <>
-                    <figure className={ placeholder } />
-                    <figure className={ placeholder } />
-                    <figure className={ placeholder } />
-                  </>
-                )
-              }
-            </div> */}
+            <DeckList />
+            {/* <Deck /> */}
+            {/* <Export /> */}
           </div>
-          {/* <Sidebar /> */}
         </section>
       </main>
     </>
