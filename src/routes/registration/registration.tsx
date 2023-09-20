@@ -24,7 +24,7 @@ const RegistrationScreen = () => {
   const handleSignUp = async (data: any) => {
     try {
       await signUp(data);
-      console.log("isAuthenticated: ", isAuthenticated);
+      router.push("/");
     } catch (error) {
       alert(`The following error ocurred: ${error}`);
     }
@@ -107,7 +107,7 @@ const RegistrationScreen = () => {
           <span className={styles.errorMessage}>{errors.password.message}</span>
         )}
 
-        <button className={styles.button} type="submit">
+        <button className={styles.button} type="submit" onClick={handleSignUp}>
           Cadastrar
         </button>
       </form>

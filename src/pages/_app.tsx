@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <AuthProvider>
         <Provider store={store}>
           <ThemeProvider>
-            {isSignedIn ? <Header /> : <LoginScreen />}
+            <Header />
             <Component {...pageProps} />
           </ThemeProvider>
         </Provider>

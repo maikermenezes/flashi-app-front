@@ -23,6 +23,7 @@ const LoginScreen = () => {
   const handleLogin = async (data: any) => {
     try {
       await signIn(data);
+      router.push("/");
     } catch (error) {
       alert(`The following error ocurred: ${error}`);
     }

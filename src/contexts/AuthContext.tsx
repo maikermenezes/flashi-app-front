@@ -23,8 +23,8 @@ type SignUpData = {
 type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
-  signIn: (data: SignInData) => Promise<void>;
-  signUp: (data: SignUpData) => Promise<void>;
+  signIn: (data: SignInData) => Promise<unknown>;
+  signUp: (data: SignUpData) => Promise<unknown>;
   signOut: () => Promise<void>;
 };
 
@@ -50,45 +50,53 @@ export function AuthProvider({ children }: any) {
   }, []);
 
   async function signIn({ email, password }: SignInData) {
-    const loginResponse = await api.post("/auth", {
-      email: email,
-      password: password,
-    });
+    try {
+      const loginResponse = await api.post("/auth", {
+        email: email,
+        password: password,
+      });
 
-    const { token, user } = loginResponse.data;
+      const { token, user } = loginResponse.data;
 
-    setCookie(undefined, "flashi.token", token, {
-      maxAge: 60 * 60 * 1, // 1 hour
-    });
+      setCookie(undefined, "flashi.token", token, {
+        maxAge: 60 * 60 * 1, // 1 hour
+      });
 
-    // TODO: essa parte é pra mandar o token pra toda chamada da api
-    // api.defaults.headers['authorization'] = `Bearer ${token}`;
+      // TODO: essa parte é pra mandar o token pra toda chamada da api
+      // api.defaults.headers['authorization'] = `Bearer ${token}`;
 
-    setUser(user);
+      setUser(user);
+    } catch (error) {
+      return error;
+    }
   }
 
   async function signUp({ name, email, password }: SignUpData) {
-    await api.post("/user", {
-      name: name,
-      email: email,
-      password: password,
-    });
+    try {
+      await api.post("/user", {
+        name: name,
+        email: email,
+        password: password,
+      });
 
-    const loginResponse = await api.post("/auth", {
-      email: email,
-      password: password,
-    });
+      const loginResponse = await api.post("/auth", {
+        email: email,
+        password: password,
+      });
 
-    const { token, user } = loginResponse.data;
+      const { token, user } = loginResponse.data;
 
-    setCookie(undefined, "flashi.token", token, {
-      maxAge: 60 * 60 * 1, // 1 hour
-    });
+      setCookie(undefined, "flashi.token", token, {
+        maxAge: 60 * 60 * 1, // 1 hour
+      });
 
-    // TODO: essa parte é pra mandar o token pra toda chamada da api
-    // api.defaults.headers['authorization'] = `Bearer ${token}`;
+      // TODO: essa parte é pra mandar o token pra toda chamada da api
+      // api.defaults.headers['authorization'] = `Bearer ${token}`;
 
-    setUser(user);
+      setUser(user);
+    } catch (error) {
+      return error;
+    }
   }
 
   async function signOut() {

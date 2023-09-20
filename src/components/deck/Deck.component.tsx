@@ -13,25 +13,27 @@ import { HiSpeakerWave } from "react-icons/hi2";
 import { useRouter } from "next/router";
 import { api } from "services/api";
 import Card from "components/card";
+import Export from "components/export";
 
 type DeckProps = {
   className?: string;
   cardList?: Array<Object>;
   name?: string;
+  speechLanguage?: string;
 };
 
 const Deck = (props: DeckProps): JSX.Element => {
   const router = useRouter();
-  const { id, deckName } = router.query;
+  let { id, deckName } = router.query;
 
   const [initialCard, setInitialCard] = useState<number | undefined>(undefined);
-  const [showDeck, setshowDeck] = useState<boolean>(true);
+  const [componentToShow, setComponentToShow] = useState<string>("deck");
   const [cards, setCards] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (id) {
+    if (id && !props.cardList) {
       api
         .get(`/deck/cards/${id}`)
         .then((response) => {
@@ -44,13 +46,21 @@ const Deck = (props: DeckProps): JSX.Element => {
           setLoading(false);
         });
     }
-  }, [id]); // Add user to the dependency array
+  }, [id]);
+
+  useEffect(() => {
+    if (props.cardList) {
+      console.log("cards list: ", props.cardList);
+      setCards(props.cardList);
+      setLoading(false);
+    }
+  }, []);
 
   const { className: argClassName = "" } = props;
 
   const className = injectClassNames(argClassName);
 
-  if (showDeck) {
+  if (componentToShow === "deck") {
     return (
       <div className={styles.externalContainer}>
         <div className={`${styles.container} ${styles.gap}`}>
@@ -70,37 +80,60 @@ const Deck = (props: DeckProps): JSX.Element => {
                   phrase={card.phrase}
                   imageUrl={card.image}
                   onClick={() => {
-                    setshowDeck(false);
+                    setComponentToShow("card");
                     setInitialCard(index);
                   }}
                 />
               ))}
             </div>
           )}
-          <div className={styles.buttonContainer}>
-            <button
-              onClick={() => {
-                setshowDeck(false);
-                setInitialCard(0);
-              }}
-            >
-              <VscBook size={26} />
-              Estudar
-            </button>
-          </div>
+          {props.cardList ? (
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setComponentToShow("export");
+                }}
+              >
+                <VscBook size={26} />
+                Continuar
+              </button>
+            </div>
+          ) : (
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => {
+                  setComponentToShow("card");
+                  setInitialCard(0);
+                }}
+              >
+                <VscBook size={26} />
+                Estudar
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );
-  } else {
+  } else if (componentToShow === "card") {
     return (
       <Card
-        deckName={deckName as string}
-        speechLanguage="pt-Br"
+        deckName={
+          (props.name
+            ? props.name
+            : deckName
+            ? deckName
+            : "Deck sem nome") as string
+        }
+        deckGerado={true}
+        setComponentToShow={setComponentToShow}
+        speechLanguage={props.speechLanguage ? props.speechLanguage : "pt-Br"}
         deck={cards}
         initialCard={initialCard}
       />
     );
-  }
+  } else if (componentToShow === "export") {
+    return <Export cardList={cards} />;
+  } else return <></>;
 };
 
 interface MiniCardProps {

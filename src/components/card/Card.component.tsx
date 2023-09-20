@@ -11,7 +11,7 @@ import { idiomas } from "utils/constants";
 
 const { loader } = styles;
 
-type CardType = {
+export type CardType = {
   image?: string;
   phrase?: String;
   translation?: String;
@@ -25,7 +25,8 @@ type CardProps = {
   deckName?: string;
   speechLanguage: string;
   initialCard?: number;
-  setShowDeck?: React.Dispatch<React.SetStateAction<boolean>>;
+  deckGerado?: boolean;
+  setComponentToShow?: React.Dispatch<React.SetStateAction<string>>;
   hadleClick?: () => void;
 };
 
@@ -36,8 +37,11 @@ const Card = (props: CardProps): JSX.Element => {
     deck,
     speechLanguage,
     initialCard,
-    setShowDeck,
+    deckGerado,
+    setComponentToShow,
   } = props;
+
+  console.log("deck received: ", deck);
 
   const [flip, setFlip] = useState(true);
 
@@ -70,18 +74,14 @@ const Card = (props: CardProps): JSX.Element => {
     console.log("currentIndex no previous: " + currentIndex);
   };
 
-  const mock = {
-    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
-    phrase: "She is cutting some herbs",
-    translation: "Ela está cortando ervas",
-  };
-
   const className = injectClassNames(argClassName);
+
+  const mockPhrase = "Something went wrong. This is a mock message";
 
   const handleSpeech = () => {
     const msg = new SpeechSynthesisUtterance();
     msg.lang = idiomas[speechLanguage].key || "en-US";
-    msg.text = mock.phrase;
+    msg.text = (deck[0].phrase ? deck[0].phrase : mockPhrase) as string;
     window.speechSynthesis.speak(msg);
   };
 
@@ -98,13 +98,18 @@ const Card = (props: CardProps): JSX.Element => {
         </p>
         <div className={styles.divCard}>
           <div className={`${styles.frontCard} ${flip ? styles.flipCard : ""}`}>
-            <img
-              className={`${styles.imageStyling} ${
-                flip ? styles.flipCard : ""
-              } `}
-              src={deck[currentIndex].image}
-              alt="imagem gerada"
-            />
+            {deck[currentIndex].image === "" ? (
+              <></>
+            ) : (
+              <img
+                className={`${styles.imageStyling} ${
+                  flip ? styles.flipCard : ""
+                } `}
+                src={deck[currentIndex].image}
+                alt="imagem gerada"
+              />
+            )}
+
             {/* <span>{phrase || mock.phrase}</span> */}
             <span>{deck[currentIndex].phrase}</span>
           </div>
@@ -143,9 +148,23 @@ const Card = (props: CardProps): JSX.Element => {
             </span>
           </button>
         </div>
-        <div className={styles.buttonBackContainer}>
-          <button onClick={handleRedirect}>Voltar para Meus Decks</button>
-        </div>
+        {deckGerado ? (
+          <div className={styles.buttonBackContainer}>
+            <button
+              onClick={() => {
+                if (setComponentToShow) {
+                  setComponentToShow("deck");
+                }
+              }}
+            >
+              Voltar
+            </button>
+          </div>
+        ) : (
+          <div className={styles.buttonBackContainer}>
+            <button onClick={handleRedirect}>Voltar para Meus Decks</button>
+          </div>
+        )}
       </div>
     </div>
   );
