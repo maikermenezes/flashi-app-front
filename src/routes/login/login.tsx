@@ -1,8 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import { useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
+import styles from "./login.module.scss";
 
 const LoginScreen = () => {
   const {
@@ -18,27 +18,32 @@ const LoginScreen = () => {
   });
 
   const router = useRouter();
-
   const { signIn } = useContext(AuthContext);
 
   const handleLogin = async (data: any) => {
     try {
       await signIn(data);
+      router.push("/");
     } catch (error) {
       alert(`The following error ocurred: ${error}`);
     }
   };
 
   return (
-    <Container>
-      <InputContainer>
+    <div className={styles.container}>
+      <div className={styles.imageContainer}>
+        <img src="/flashi_redondo.png" alt="" />
+      </div>
+      <div className={styles.inputContainer}>
         <ControllerInput
           control={control}
           name="email"
           rules={emailRules}
           placeholder="E-mail"
         />
-        {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
+        {errors.email && (
+          <span className={styles.errorText}>{errors.email.message}</span>
+        )}
         <ControllerInput
           control={control}
           name="password"
@@ -46,12 +51,16 @@ const LoginScreen = () => {
           placeholder="Senha"
           type="password"
         />
-        {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
-      </InputContainer>
-      <ButtonContainer>
-        <Button onClick={handleSubmit(handleLogin)}>Login</Button>
-      </ButtonContainer>
-    </Container>
+        {errors.password && (
+          <span className={styles.errorText}>{errors.password.message}</span>
+        )}
+      </div>
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={handleSubmit(handleLogin)}>
+          Login
+        </button>
+      </div>
+    </div>
   );
 };
 
@@ -72,7 +81,8 @@ const ControllerInput = ({ control, name, rules, ...props }: any) => (
     control={control}
     rules={rules}
     render={({ field: { onChange, onBlur, value } }) => (
-      <StyledInput
+      <input
+        className={styles.styledInput}
         onBlur={onBlur}
         onChange={onChange}
         value={value}
@@ -82,54 +92,5 @@ const ControllerInput = ({ control, name, rules, ...props }: any) => (
     name={name}
   />
 );
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-`;
-
-const InputContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledInput = styled.input`
-  background-color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-top: 5px;
-  width: 70%;
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
-`;
-
-const Button = styled.button`
-  background-color: #0782f9;
-  padding: 15px;
-  border-radius: 10px;
-  width: 65%;
-  text-align: center;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-`;
-
-const ErrorText = styled.span`
-  color: red;
-`;
 
 export default LoginScreen;
