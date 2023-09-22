@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.styledInput {
+  width: 60%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 1px solid #ff977266;
+  border-radius: 4px;
+  display: block;
+  height: 30px;
+  font-size: 15px;
+  text-align: left;
+  padding: 0 0 0 30px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.imageContainer {
+  img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 10%;
+  }
+}
+
+.button {
+  border-radius: 50px;
+  height: 30px;
+  width: 46.5%;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: #012495;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  margin-top: 20px;
+}
+
+.errorText {
+  color: red;
+}
