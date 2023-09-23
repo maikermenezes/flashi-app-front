@@ -41,7 +41,7 @@ const Card = (props: CardProps): JSX.Element => {
     setComponentToShow,
   } = props;
 
-  console.log("deck received: ", deck);
+  // console.log("deck received: ", deck);
 
   const [flip, setFlip] = useState(true);
 
