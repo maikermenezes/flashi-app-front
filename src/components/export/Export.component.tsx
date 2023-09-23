@@ -11,7 +11,7 @@ const Export = ({ cardList }: any) => {
 
   const handleSaveDeck = async () => {
     console.log("starting");
-    console.log("user: ", user);
+    // console.log("user: ", user);
     if (!user?.id) return;
     try {
       console.log("starting 2");
@@ -40,8 +40,8 @@ const Export = ({ cardList }: any) => {
     }
   };
 
-  console.log("cardList:", cardList);
-  console.log("deckName: ", deckName);
+  // console.log("cardList:", cardList);
+  // console.log("deckName: ", deckName);
   return (
     <div className={styles.externalComponent}>
       <div className={styles.internalContainer}>
