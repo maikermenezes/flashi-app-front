@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Deck from "components/deck/Deck.component";
 import { useTextToSpeech } from "hooks/api";
 import { idiomas } from "utils/constants";
+import dynamic from "next/dynamic";
 
 const { loader } = styles;
 
@@ -30,7 +31,8 @@ type CardProps = {
   hadleClick?: () => void;
 };
 
-const Card = (props: CardProps): JSX.Element => {
+
+const NoSSRCardComponent = (props: CardProps): JSX.Element => {
   const {
     className: argClassName = "",
     deckName,
@@ -96,25 +98,25 @@ const Card = (props: CardProps): JSX.Element => {
         </p>
         <div className={styles.divCard}>
           <div className={`${styles.frontCard} ${flip ? styles.flipCard : ""}`}>
-            {deck[currentIndex].image === "" ? (
+            {deck[currentIndex]?.image === "" ? (
               <></>
             ) : (
               <img
                 className={`${styles.imageStyling} ${
                   flip ? styles.flipCard : ""
                 } `}
-                src={deck[currentIndex].image}
+                src={deck[currentIndex]?.image}
                 alt="imagem gerada"
               />
             )}
 
             {/* <span>{phrase || mock.phrase}</span> */}
-            <span>{deck[currentIndex].phrase}</span>
+            <span>{deck[currentIndex]?.phrase}</span>
           </div>
           <div className={`${styles.cardBack} ${!flip ? styles.flipCard : ""}`}>
             <div className={styles.cardBackPhrase}>
               {/* <span>{translation || mock.translation}</span> */}
-              <span>{deck[currentIndex].translation}</span>
+              <span>{deck[currentIndex]?.translation}</span>
             </div>
           </div>
         </div>
@@ -169,7 +171,7 @@ const Card = (props: CardProps): JSX.Element => {
 };
 
 
-export async function getStaticProps() {
+export async function getInitialProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
   const deck = [{
@@ -198,5 +200,10 @@ export async function getStaticProps() {
     },
   }
 }
+
+
+const Card = dynamic(() => Promise.resolve(NoSSRCardComponent), {
+  ssr: false,
+})
 
 export default Card;
