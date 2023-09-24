@@ -168,14 +168,16 @@ export async function getStaticProps() {
     id: "",
   }
 
+  const name = "Deck Name";
+  const speechLanguage = "en-US"; 
 
- 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
       cardList,
-      user
+      name,
+      speechLanguage,
     },
   }
 }
