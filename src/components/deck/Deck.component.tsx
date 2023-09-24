@@ -162,6 +162,12 @@ export async function getStaticProps() {
     translation: "Ela está cortando ervas",
   }];
 
+  const user = {
+    name: "User Name",
+    email: "",
+    id: "",
+  }
+
 
  
   // By returning { props: { posts } }, the Blog component
@@ -169,6 +175,7 @@ export async function getStaticProps() {
   return {
     props: {
       cardList,
+      user
     },
   }
 }
