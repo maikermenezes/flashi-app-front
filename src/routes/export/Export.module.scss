@@ -1,0 +1,63 @@
+.externalComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 0px 16px 0 16px;
+  height: 85%;
+}
+
+.internalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 60%;
+  position: relative;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #ff9772;
+    border-radius: 10px;
+    margin-top: 4px;
+    font-size: 20px;
+    color: #fff;
+    gap: 6px;
+    width: 220px;
+    height: 40px;
+    font-weight: 600;
+    vertical-align: auto;
+    cursor: pointer;
+
+    &:focus {
+      background-color: #cc5d34;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: justify;
+  }
+}
+
+.input {
+  margin-top: 20px;
+  border: 1px solid #ff977266;
+  border-radius: 4px;
+  display: block;
+  height: 25px;
+  width: 220px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 0 0 0;
+
+  &:focus {
+    border: 1px solid #ff9772;
+  }
+}
