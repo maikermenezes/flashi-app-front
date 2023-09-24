@@ -50,7 +50,7 @@ const Deck = (props: DeckProps): JSX.Element => {
 
   useEffect(() => {
     if (props.cardList) {
-      console.log("cards list: ", props.cardList);
+      // console.log("cards list: ", props.cardList);
       setCards(props.cardList);
       setLoading(false);
     }
@@ -151,5 +151,26 @@ const MiniCard = ({ phrase, imageUrl, onClick }: MiniCardProps) => {
     </div>
   );
 };
+
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const cardList = [{
+    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
+    phrase: "She is cutting some herbs",
+    translation: "Ela está cortando ervas",
+  }];
+
+
+ 
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      cardList,
+    },
+  }
+}
 
 export default Deck;

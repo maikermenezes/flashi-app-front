@@ -74,8 +74,6 @@ const Card = (props: CardProps): JSX.Element => {
     console.log("currentIndex no previous: " + currentIndex);
   };
 
-  const className = injectClassNames(argClassName);
-
   const mockPhrase = "Something went wrong. This is a mock message";
 
   const handleSpeech = () => {
