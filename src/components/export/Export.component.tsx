@@ -74,4 +74,35 @@ const Export = ({ cardList }: any) => {
   );
 };
 
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const cardList = [{
+    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
+    phrase: "She is cutting some herbs",
+    translation: "Ela está cortando ervas",
+    deckId: "1",
+  }];
+
+  const user = {
+    name: "User Name",
+    email: "default@test.com",
+    id: "1",
+  }
+
+  const name = "Deck Name";
+  const speechLanguage = "en-US"; 
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      cardList,
+      name,
+      speechLanguage,
+      user,
+    },
+  }
+}
+
 export default Export;
