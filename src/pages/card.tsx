@@ -1,1 +1,1 @@
-export { default } from "routes/card";
+export { default } from "components/card";
