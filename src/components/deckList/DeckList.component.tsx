@@ -26,7 +26,7 @@ const DeckList = (props: DeckListProps): JSX.Element => {
 
   const { user } = useContext(AuthContext);
 
-  console.log("user: ", user);
+  // console.log("user: ", user);
 
   const [decks, setDecks] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
