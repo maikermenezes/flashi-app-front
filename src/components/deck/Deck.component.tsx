@@ -15,6 +15,7 @@ import { api } from "services/api";
 import Card from "components/card";
 import Export from "components/export";
 
+
 type DeckProps = {
   className?: string;
   cardList?: Array<Object>;
@@ -28,7 +29,12 @@ const Deck = (props: DeckProps): JSX.Element => {
 
   const [initialCard, setInitialCard] = useState<number | undefined>(undefined);
   const [componentToShow, setComponentToShow] = useState<string>("deck");
-  const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<any[]>([{
+    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
+    phrase: "She is cutting some herbs",
+    translation: "Ela está cortando ervas",
+    deckId: "1",
+  }]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -74,18 +80,18 @@ const Deck = (props: DeckProps): JSX.Element => {
           ) : error ? (
             <div>{error}</div>
           ) : (
-            <div className={styles.containerMiniCards}>
-              {cards.map((card, index) => (
-                <MiniCard
-                  phrase={card.phrase}
-                  imageUrl={card.image}
-                  onClick={() => {
-                    setComponentToShow("card");
-                    setInitialCard(index);
-                  }}
-                />
-              ))}
-            </div>
+              <div className={styles.containerMiniCards}>
+                {cards.map((card, index) => (
+                  <MiniCard
+                    phrase={card.phrase}
+                    imageUrl={card.image}
+                    onClick={() => {
+                      setComponentToShow("card");
+                      setInitialCard(index);
+                    }}
+                  />
+                ))}
+              </div>
           )}
           {props.cardList ? (
             <div className={styles.buttonContainer}>

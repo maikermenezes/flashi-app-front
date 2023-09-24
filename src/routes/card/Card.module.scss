@@ -1,0 +1,265 @@
+@use 'styles/variables/placeholder' as *;
+
+.icon {
+  display: inline-block;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.loader {
+  border-radius: 50%;
+
+  @include placeholder;
+}
+
+.cardContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fff;
+    width: 80%;
+    max-width: 350px;
+    height: 450px;
+    flex-direction: column;
+    border-radius: 25px;
+    padding: 16px;
+    border: 1px solid #E5E5E5;
+    color: #040404;
+
+    h1 {
+        font-size: 26px;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+        text-align: left;
+        width: 100%;
+    }
+}
+
+.externalContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+}
+
+
+.iconSpeaker {
+    position: absolute;
+    top: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 30px;
+    z-index: 10;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardCount{
+    position: absolute;
+    right: 30px;
+}
+
+.turnContainer{
+
+    padding: 24px;
+
+    span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 22px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+}
+
+.iconArrow {
+    height: 14px;
+    width: 14px;
+}
+
+.buttonBackContainer{
+    display: flex;
+    justify-content: center;
+    padding: 32px 8px 8px 8px;
+
+    button {
+        border-radius: 50px;
+        height: 35px;
+        width: 210px;
+        gap: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        font-size: 16px;
+        font-weight: 600;
+        background: rgb(6,6,23);
+        background: linear-gradient(270deg, rgba(1,36,149,1) 30% , rgba(6,6,23,1) 100%);    color: #fff;
+        cursor: pointer;
+        z-index: 10;
+        margin-top: 12px;
+    
+        &:focus {
+            background-color: #011e6e;
+        }
+    }
+}
+
+.buttonContainer {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FE8054;
+        padding: 8px 8px;
+        border-radius: 25px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #000;
+        cursor: pointer;
+        border: none;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+    }
+}
+
+.cardBack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 0%;
+    height: 200px;
+    border-radius: 25px;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    border-radius: 25px;
+    transform-style: preserve-3d;
+    border: 1px solid #E5E5E5;
+    transform: rotateY(-180deg);
+}
+
+.cardBackPhrase{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+
+
+    span{
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-weight: 600;
+        margin: 10px;
+        color: #fff;
+        width: 70%;
+    }
+
+}
+
+.divCard {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.imageStyling {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    border-radius: 8px;
+    z-index: 1;
+    transform: rotateY(180deg);
+    width: 0;
+    left: 15%;
+    top: 15px;
+}
+
+.imageStyling.flipCard {
+    transform: rotateY(0deg);
+    z-index: 10;
+    width: 70%;
+    transition: all 0.5s ease-in-out;
+}
+
+.frontCard {
+    transform: rotateY(180deg);
+    width: 0;
+    background-color: #3c88e4;
+    border-radius: 16px;
+
+    span {
+        color: #fff;
+        position: absolute;
+        top: 150px;
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        opacity: 0;
+    }
+}
+
+.frontCard.flipCard{
+    transform: rotateY(0deg);
+    z-index: 10;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    height: 200px;
+
+    span {
+        transition-delay: 0.5s;
+        opacity: 1;
+    }
+
+}
+
+.cardBack.flipCard {
+    transform: rotateY(0deg);
+    display: block;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    background-color: #3c88e4;
+    color: #fff;
+
+    .cardBackPhrase {
+        transition-delay: 0.5s;
+        opacity: 1;
+    }
+
+}
