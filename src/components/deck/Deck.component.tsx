@@ -14,26 +14,29 @@ import { useRouter } from "next/router";
 import { api } from "services/api";
 import Card from "components/card";
 import Export from "components/export";
-
+import { idiomas } from "utils/constants";
 
 type DeckProps = {
   className?: string;
   cardList?: Array<Object>;
   name?: string;
   speechLanguage?: string;
+  form: any;
 };
 
 const Deck = (props: DeckProps): JSX.Element => {
+  console.log("form1: ", props.form);
   const router = useRouter();
   let { id, deckName } = router.query;
+
+  const speechLanguage = props.speechLanguage ? props.speechLanguage : "pt-Br";
+  const mockPhrase = "Something went wrong. This is a mock message";
 
   const [initialCard, setInitialCard] = useState<number | undefined>(undefined);
   const [componentToShow, setComponentToShow] = useState<string>("deck");
   const [cards, setCards] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  console.log("cardList: ", props.cardList);
 
   useEffect(() => {
     if (id && !props.cardList) {
@@ -53,11 +56,19 @@ const Deck = (props: DeckProps): JSX.Element => {
 
   useEffect(() => {
     if (props.cardList) {
-      // console.log("cards list: ", props.cardList);
       setCards(props.cardList);
       setLoading(false);
     }
   }, []);
+
+  if (cards) {
+    cards.forEach((card) => {
+      const msg = new SpeechSynthesisUtterance();
+      msg.lang = idiomas[speechLanguage].key || "en-US";
+      msg.text = (card?.phrase ? card?.phrase : mockPhrase) as string;
+      card.audio = msg;
+    });
+  }
 
   const { className: argClassName = "" } = props;
 
@@ -77,18 +88,18 @@ const Deck = (props: DeckProps): JSX.Element => {
           ) : error ? (
             <div>{error}</div>
           ) : (
-              <div className={styles.containerMiniCards}>
-                {cards.map((card, index) => (
-                  <MiniCard
-                    phrase={card.phrase}
-                    imageUrl={card.image}
-                    onClick={() => {
-                      setComponentToShow("card");
-                      setInitialCard(index);
-                    }}
-                  />
-                ))}
-              </div>
+            <div className={styles.containerMiniCards}>
+              {cards.map((card, index) => (
+                <MiniCard
+                  phrase={card.phrase}
+                  imageUrl={card.image}
+                  onClick={() => {
+                    setComponentToShow("card");
+                    setInitialCard(index);
+                  }}
+                />
+              ))}
+            </div>
           )}
           {props.cardList ? (
             <div className={styles.buttonContainer}>
@@ -129,13 +140,19 @@ const Deck = (props: DeckProps): JSX.Element => {
         }
         deckGerado={true}
         setComponentToShow={setComponentToShow}
-        speechLanguage={props.speechLanguage ? props.speechLanguage : "pt-Br"}
+        speechLanguage={speechLanguage}
         deck={cards}
         initialCard={initialCard}
       />
     );
   } else if (componentToShow === "export") {
-    return <Export cardList={cards} />;
+    return (
+      <Export
+        cardList={cards}
+        speechLanguage={speechLanguage}
+        form={props.form}
+      />
+    );
   } else return <></>;
 };
 
@@ -154,35 +171,5 @@ const MiniCard = ({ phrase, imageUrl, onClick }: MiniCardProps) => {
     </div>
   );
 };
-
-
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const cardList = [{
-    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
-    phrase: "She is cutting some herbs",
-    translation: "Ela está cortando ervas",
-  }];
-
-  const user = {
-    name: "User Name",
-    email: "",
-    id: "",
-  }
-
-  const name = "Deck Name";
-  const speechLanguage = "en-US"; 
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      cardList,
-      name,
-      speechLanguage,
-    },
-  }
-}
 
 export default Deck;

@@ -26,14 +26,15 @@ export default function Home(): JSX.Element {
     phrase: "",
     translation: "",
     langKey: "",
-    apiKey: "",
+    openAiKey: "",
+    googleKey: "",
     deck: [],
   });
 
   const handleDeckGeneration = (novoCard: CardType) => {
     setGeneratedDeck([...generatedDeck, novoCard]);
     console.log("Deck gerado: " + JSON.stringify(generatedDeck));
-  }
+  };
 
   const handleNextStep = () => {
     setFormStep(formStep + 1);
@@ -78,6 +79,7 @@ export default function Home(): JSX.Element {
             targetLanguage="SPEAKING"
             handleClick={handleNextStep}
             updateForm={updateForm}
+            form={form}
           />
           // <Welcome />
         )}
@@ -86,6 +88,7 @@ export default function Home(): JSX.Element {
             targetLanguage="LEARNING"
             handleClick={handleNextStep}
             updateForm={updateForm}
+            form={form}
           />
         )}
         {formStep == 3 && (
@@ -100,6 +103,7 @@ export default function Home(): JSX.Element {
             cardList={form.deck}
             speechLanguage={form.targetLanguage}
             name="Deck gerado"
+            form={form}
           />
         )}
       </>

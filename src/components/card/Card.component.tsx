@@ -13,10 +13,11 @@ import dynamic from "next/dynamic";
 const { loader } = styles;
 
 export type CardType = {
-  image?: string;
-  phrase?: String;
-  translation?: String;
-  deckId?: String;
+  image: string;
+  phrase: string;
+  translation: string;
+  deckId?: string;
+  audio?: SpeechSynthesisUtterance;
 };
 
 type CardProps = {
@@ -30,7 +31,6 @@ type CardProps = {
   setComponentToShow?: React.Dispatch<React.SetStateAction<string>>;
   hadleClick?: () => void;
 };
-
 
 const NoSSRCardComponent = (props: CardProps): JSX.Element => {
   const {
@@ -62,8 +62,6 @@ const NoSSRCardComponent = (props: CardProps): JSX.Element => {
       setCurrentIndex(currentIndex + 1);
     } else {
       setCurrentIndex(0);
-
-      console.log("currentIndex no next: " + currentIndex);
     }
   };
 
@@ -73,21 +71,20 @@ const NoSSRCardComponent = (props: CardProps): JSX.Element => {
     } else {
       setCurrentIndex(deck.length - 1);
     }
-    console.log("currentIndex no previous: " + currentIndex);
   };
 
   const mockPhrase = "Something went wrong. This is a mock message";
+  const mockMessage = new SpeechSynthesisUtterance();
+  mockMessage.lang = idiomas[speechLanguage].key || "en-US";
+  mockMessage.text = mockPhrase;
 
   const handleSpeech = () => {
-    const msg = new SpeechSynthesisUtterance();
-    msg.lang = idiomas[speechLanguage].key || "en-US";
-    msg.text = (deck[0].phrase ? deck[0].phrase : mockPhrase) as string;
-    window.speechSynthesis.speak(msg);
+    window.speechSynthesis.speak(
+      (deck[currentIndex].audio
+        ? deck[currentIndex].audio
+        : mockMessage) as SpeechSynthesisUtterance
+    );
   };
-
-  // const handleSpeech = () => {
-  //   useTextToSpeech("test phrase", "en-US", "en-US-Wavenet-C")
-  // }
 
   return (
     <div className={styles.externalContainer}>
@@ -170,40 +167,8 @@ const NoSSRCardComponent = (props: CardProps): JSX.Element => {
   );
 };
 
-
-export async function getInitialProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const deck = [{
-    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
-    phrase: "She is cutting some herbs",
-    translation: "Ela está cortando ervas",
-    deckId: "1",
-  }];
-
-  const user = {
-    name: "User Name",
-    email: "",
-    id: "",
-  }
-
-  const name = "Deck Name";
-  const speechLanguage = "en-US"; 
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      deck,
-      name,
-      speechLanguage,
-    },
-  }
-}
-
-
 const Card = dynamic(() => Promise.resolve(NoSSRCardComponent), {
   ssr: false,
-})
+});
 
 export default Card;
