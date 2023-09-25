@@ -6,8 +6,9 @@ import { api } from "services/api";
 import { AuthContext } from "contexts/AuthContext";
 import { generateDeck } from "./generateDeck";
 import { idiomas } from "utils/constants";
+import dynamic from "next/dynamic";
 
-const Export = ({ cardList, speechLanguage, form }: any) => {
+const NoSSRExportComponent = ({ cardList, speechLanguage, form }: any) => {
   const { user } = useContext(AuthContext);
   const [deckName, setDeckName] = useState("");
 
@@ -89,5 +90,9 @@ const Export = ({ cardList, speechLanguage, form }: any) => {
     </div>
   );
 };
+
+const Export = dynamic(() => Promise.resolve(NoSSRExportComponent), {
+  ssr: false,
+});
 
 export default Export;
