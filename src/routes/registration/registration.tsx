@@ -1,12 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
-// import { auth, db } from '../../firebase';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
-// import { doc, setDoc } from 'firebase/firestore';
-// import PopupComponent from '../components/PopUpComponent';
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import { AuthContext } from "contexts/AuthContext";
+import styles from "./registration.module.scss";
 
 const RegistrationScreen = () => {
   const {
@@ -23,29 +19,40 @@ const RegistrationScreen = () => {
   });
 
   const router = useRouter();
-
-  const { signUp } = useContext(AuthContext);
+  const { signUp, isAuthenticated } = useContext(AuthContext);
 
   const handleSignUp = async (data: any) => {
     try {
       await signUp(data);
+      router.push("/");
     } catch (error) {
       alert(`The following error ocurred: ${error}`);
     }
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit(handleSignUp)}>
+    <div className={styles.container}>
+      <div className={styles.imageContainer}>
+        <img src="/flashi_redondo.png" alt="" />
+      </div>
+      <form className={styles.form} onSubmit={handleSubmit(handleSignUp)}>
         <Controller
           control={control}
           rules={{ required: "Campo obrigatório" }}
           render={({ field: { onChange, value } }) => (
-            <Input placeholder="Nome" onChange={onChange} value={value} />
+            <input
+              className={styles.input}
+              placeholder="Nome"
+              onChange={onChange}
+              value={value}
+            />
           )}
           name="name"
         />
-        {errors.name && <ErrorMessage>*{errors.name.message}</ErrorMessage>}
+        {errors.name && (
+          <span className={styles.errorMessage}>{errors.name.message}</span>
+        )}
+
         <Controller
           control={control}
           rules={{
@@ -56,11 +63,18 @@ const RegistrationScreen = () => {
             },
           }}
           render={({ field }) => (
-            <Input type="email" placeholder="E-mail" {...field} />
+            <input
+              type="email"
+              className={styles.input}
+              placeholder="E-mail"
+              {...field}
+            />
           )}
           name="email"
         />
-        {errors.email && <ErrorMessage>*{errors.email.message}</ErrorMessage>}
+        {errors.email && (
+          <span className={styles.errorMessage}>{errors.email.message}</span>
+        )}
 
         <Controller
           control={control}
@@ -80,85 +94,37 @@ const RegistrationScreen = () => {
             },
           }}
           render={({ field }) => (
-            <Input type="password" placeholder="Senha" {...field} />
+            <input
+              type="password"
+              className={styles.input}
+              placeholder="Senha"
+              {...field}
+            />
           )}
           name="password"
         />
         {errors.password && (
-          <ErrorMessage>*{errors.password.message}</ErrorMessage>
+          <span className={styles.errorMessage}>{errors.password.message}</span>
         )}
-        <Button type="submit">Cadastrar</Button>
-      </Form>
 
-      <LoginContainer>
+        <button className={styles.button} type="submit" onClick={handleSignUp}>
+          Cadastrar
+        </button>
+      </form>
+
+      <div className={styles.loginContainer}>
         <p>Já tem uma conta? Faça seu login.</p>
-        <Button
+        <button
+          className={`${styles.button} ${styles.login}`}
           onClick={() => {
             router.push("/login");
           }}
         >
           Login
-        </Button>
-      </LoginContainer>
-    </Container>
+        </button>
+      </div>
+    </div>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 0 auto;
-  align-items: center;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  background-color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  margin-top: 5px;
-  width: 70%;
-`;
-
-const Button = styled.button`
-  background-color: #0782f9;
-  padding: 15px;
-  border-radius: 10px;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  margin-top: 20px;
-  cursor: pointer;
-  width: 65%;
-`;
-
-const ErrorMessage = styled.span`
-  color: red;
-`;
-
-const LoginContainer = styled.div`
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  Button {
-    width: 100%;
-    margin: 0px;
-  }
-
-  p {
-    margin-top: 5vh;
-  }
-`;
 
 export default RegistrationScreen;
