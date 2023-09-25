@@ -29,14 +29,11 @@ const Deck = (props: DeckProps): JSX.Element => {
 
   const [initialCard, setInitialCard] = useState<number | undefined>(undefined);
   const [componentToShow, setComponentToShow] = useState<string>("deck");
-  const [cards, setCards] = useState<any[]>([{
-    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
-    phrase: "She is cutting some herbs",
-    translation: "Ela está cortando ervas",
-    deckId: "1",
-  }]);
+  const [cards, setCards] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  console.log("cardList: ", props.cardList);
 
   useEffect(() => {
     if (id && !props.cardList) {

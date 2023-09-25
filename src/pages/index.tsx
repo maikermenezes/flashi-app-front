@@ -18,6 +18,7 @@ export default function Home(): JSX.Element {
 
   const [formStep, setFormStep] = useState(0);
   const [langKey, setLangKey] = useState("english");
+  const [generatedDeck, setGeneratedDeck] = useState<CardType[]>([]);
   const [form, setForm] = useState({
     language: "",
     targetLanguage: "",
@@ -26,7 +27,13 @@ export default function Home(): JSX.Element {
     translation: "",
     langKey: "",
     apiKey: "",
+    deck: [],
   });
+
+  const handleDeckGeneration = (novoCard: CardType) => {
+    setGeneratedDeck([...generatedDeck, novoCard]);
+    console.log("Deck gerado: " + JSON.stringify(generatedDeck));
+  }
 
   const handleNextStep = () => {
     setFormStep(formStep + 1);
@@ -90,7 +97,7 @@ export default function Home(): JSX.Element {
         )}
         {formStep >= 4 && (
           <Deck
-            cardList={auxDeck}
+            cardList={form.deck}
             speechLanguage={form.targetLanguage}
             name="Deck gerado"
           />

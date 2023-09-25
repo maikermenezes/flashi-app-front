@@ -282,6 +282,12 @@ const fixDallePrompt = ( responseGPT:string ) => {
           translation: currentItem.translation,
         }])
 
+        cardList.push({
+          image: res.data.data[0].url,
+          phrase: currentItem.sentence,
+          translation: currentItem.translation,
+        })
+
         console.log("currentItem.sentence no prompt: ", currentItem.sentence);
 
         console.log("cardList no prompt: ", cardList);
