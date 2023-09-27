@@ -34,7 +34,7 @@ async function generateGoogleTTS(
         },
         voice: {
           languageCode: languageCode,
-          ssmlGender: "NEUTRAL",
+          ssmlGender: "SSML_VOICE_GENDER_UNSPECIFIED",
         },
         audioConfig: {
           audioEncoding: "MP3",
