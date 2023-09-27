@@ -4,10 +4,27 @@ import { TiExportOutline } from "react-icons/ti";
 import { TfiSave } from "react-icons/tfi";
 import { api } from "services/api";
 import { AuthContext } from "contexts/AuthContext";
+import { generateDeck } from "./generateDeck";
+import { idiomas } from "utils/constants";
+import dynamic from "next/dynamic";
 
-const Export = ({ cardList }: any) => {
+const NoSSRExportComponent = ({ cardList, speechLanguage, form }: any) => {
   const { user } = useContext(AuthContext);
   const [deckName, setDeckName] = useState("");
+
+  console.log("cardListttt: ", cardList);
+  console.log("cardList[0].audio.text: ", cardList[0].audio.text);
+
+  console.log("form: ", form);
+
+  const handleExport = async () => {
+    generateDeck(
+      cardList,
+      form.googleKey,
+      deckName,
+      idiomas[speechLanguage].key
+    );
+  };
 
   const handleSaveDeck = async () => {
     console.log("starting");
@@ -47,9 +64,9 @@ const Export = ({ cardList }: any) => {
       <div className={styles.internalContainer}>
         <h1>Tudo Pronto</h1>
         <div className={styles.saveContainer}>
-          <button onClick={handleSaveDeck}>
+          {/* <button onClick={handleSaveDeck}>
             <TfiSave size={22} /> Guarde seu deck
-          </button>
+          </button> */}
           <input
             className={styles.input}
             type="text"
@@ -59,8 +76,8 @@ const Export = ({ cardList }: any) => {
           />
           <p>Veja o deck gerado em "Decks"</p>
         </div>
-        {/* <div className={styles.exportContainer}>
-          <button>
+        <div className={styles.exportContainer}>
+          <button onClick={handleExport}>
             <TiExportOutline size={30} /> Exportar .apkg
           </button>
           <p>
@@ -68,41 +85,14 @@ const Export = ({ cardList }: any) => {
             plataforma, você consegue utilizar repetição espaçada e
             personalização de estilo
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );
 };
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const cardList = [{
-    imageUrl: "https://source.unsplash.com/yWG-ndhxvqY",
-    phrase: "She is cutting some herbs",
-    translation: "Ela está cortando ervas",
-    deckId: "1",
-  }];
-
-  const user = {
-    name: "User Name",
-    email: "default@test.com",
-    id: "1",
-  }
-
-  const name = "Deck Name";
-  const speechLanguage = "en-US"; 
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      cardList,
-      name,
-      speechLanguage,
-      user,
-    },
-  }
-}
+const Export = dynamic(() => Promise.resolve(NoSSRExportComponent), {
+  ssr: false,
+});
 
 export default Export;

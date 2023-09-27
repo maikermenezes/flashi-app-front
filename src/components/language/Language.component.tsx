@@ -16,6 +16,7 @@ type LanguageProps = {
   appLanguage?: string;
   handleClick: () => void;
   updateForm: (object: Object) => void;
+  form: any;
 };
 
 const Loader = ({ className = "" }: LanguageProps): JSX.Element => (
@@ -23,6 +24,7 @@ const Loader = ({ className = "" }: LanguageProps): JSX.Element => (
 );
 
 const Language = (props: LanguageProps): JSX.Element => {
+  console.log("form2: ", props.form);
   const { className: argClassName = "" } = props;
 
   const className = injectClassNames(argClassName);
